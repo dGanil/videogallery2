@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Gallery</title>
+    <!-- BTSTRP -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet preload">
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- <script src="css/swiper-bundle.min.css"></script> -->
+</head>
+
+<body>
+    <div class="content">
+        <div class="content-top">
+            <header>
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container">
+                        <button class="mobile-menu__toggler btn-off">
+                            <svg class="mobile-menu__open" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.33337 3.9968C1.33337 3.63038 1.63042 3.33333 1.99684 3.33333H7.33658C7.703 3.33333 8.00004 3.63038 8.00004 3.9968C8.00004 4.36322 7.703 4.66026 7.33658 4.66026H1.99684C1.63042 4.66026 1.33337 4.36322 1.33337 3.9968Z" fill="white" />
+                                <path d="M1.33337 7.99984C1.33337 7.63342 1.63042 7.33638 1.99684 7.33638H14.0032C14.3697 7.33638 14.6667 7.63342 14.6667 7.99984C14.6667 8.36626 14.3697 8.6633 14.0032 8.6633H1.99684C1.63042 8.6633 1.33337 8.36626 1.33337 7.99984Z" fill="white" />
+                                <path d="M1.99684 11.3397C1.63042 11.3397 1.33337 11.6368 1.33337 12.0032C1.33337 12.3696 1.63042 12.6667 1.99684 12.6667H10.0032C10.3697 12.6667 10.6667 12.3696 10.6667 12.0032C10.6667 11.6368 10.3697 11.3397 10.0032 11.3397H1.99684Z" fill="white" />
+                            </svg>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <img src="img/logo.png" alt="">
+                        </a>
+                        <img class="header-badge" src="img/badge.png" alt="">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link help-link" aria-current="page" href="#">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="24" height="24" rx="6" fill="white" fill-opacity="0.1" />
+                                            <path d="M11.0455 14.5114H13.1989V14.3182C13.2102 13.2102 13.608 12.6932 14.5057 12.1534C15.5682 11.5227 16.2614 10.6875 16.2614 9.35227C16.2614 7.36364 14.6591 6.20454 12.4034 6.20454C10.3409 6.20454 8.65911 7.28409 8.60797 9.55682H10.9262C10.9602 8.63068 11.6477 8.13636 12.3921 8.13636C13.1591 8.13636 13.7784 8.64773 13.7784 9.4375C13.7784 10.1818 13.2387 10.6761 12.5398 11.1193C11.5852 11.7216 11.0512 12.3295 11.0455 14.3182V14.5114ZM12.1648 18.1477C12.8921 18.1477 13.5227 17.5398 13.5284 16.7841C13.5227 16.0398 12.8921 15.4318 12.1648 15.4318C11.4148 15.4318 10.7955 16.0398 10.8012 16.7841C10.7955 17.5398 11.4148 18.1477 12.1648 18.1477Z" fill="white" />
+                                        </svg>
+                                        <span class="help-link__text">
+                                            Help
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 11H8C8 12.1046 8.89543 13 10 13C11.1046 13 12 12.1046 12 11H14C14 13.2091 12.2091 15 10 15C7.79086 15 6 13.2091 6 11Z" fill="white" />
+                                            <path d="M12 8C12 8.55229 12.4477 9 13 9C13.5523 9 14 8.55229 14 8C14 7.44771 13.5523 7 13 7C12.4477 7 12 7.44771 12 8Z" fill="white" />
+                                            <path d="M7 9C6.44771 9 6 8.55229 6 8C6 7.44771 6.44771 7 7 7C7.55229 7 8 7.44771 8 8C8 8.55229 7.55229 9 7 9Z" fill="white" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10C0 15.5228 4.47715 20 10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10ZM2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10Z" fill="white" />
+                                        </svg>
+                                        <p class="credits-text">
+                                            <span>Buy </span> Credits
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link messages-link" aria-current="page" href="#">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z" fill="white" />
+                                        </svg>
+                                        32
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <mask id="mask0-369874" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                                <rect width="24" height="24" fill="#C4C4C4" />
+                                            </mask>
+                                            <g mask="url(#mask0-369874)">
+                                                <path d="M11.5487 1.94568C11.7299 1.56612 12.2701 1.56612 12.4513 1.94568L15.3393 7.99806C15.4122 8.15082 15.5574 8.25633 15.7252 8.27845L22.3738 9.15486C22.7908 9.20982 22.9577 9.72366 22.6527 10.0132L17.789 14.6302C17.6663 14.7467 17.6108 14.9174 17.6416 15.0839L18.8626 21.6779C18.9392 22.0914 18.5021 22.409 18.1325 22.2084L12.2385 19.0094C12.0898 18.9287 11.9102 18.9287 11.7615 19.0094L5.86751 22.2084C5.49788 22.409 5.06079 22.0914 5.13736 21.6779L6.35838 15.0839C6.38919 14.9174 6.33373 14.7467 6.21097 14.6302L1.34727 10.0132C1.04226 9.72366 1.20921 9.20982 1.62617 9.15486L8.27478 8.27845C8.44258 8.25633 8.5878 8.15082 8.66069 7.99806L11.5487 1.94568Z" fill="white" />
+                                            </g>
+                                        </svg>
+                                        7
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link bell-link" href="#">
+                                        <svg width="16" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2V2.28988C12.8915 3.15043 15 5.82898 15 9V16H16V18H0V16H1V9C1 5.82898 3.10851 3.15043 6 2.28988V2C6 0.895431 6.89543 0 8 0C9.10457 0 10 0.895431 10 2ZM3 16H13V9C13 6.23858 10.7614 4 8 4C5.23858 4 3 6.23858 3 9V16ZM10 20V19H6V20C6 21.1046 6.89543 22 8 22C9.10457 22 10 21.1046 10 20Z" fill="white" />
+                                        </svg>
+                                        <span class="bell-text">1</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        My
+                                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1.22882 0.171562L0.286011 1.11437L5.00004 5.82843L9.71409 1.11439L8.77128 0.171582L5.00006 3.9428L1.22882 0.171562Z" fill="white" />
+                                        </svg>
+                                    </a>
+                                    <ul class="dropdown-menu my__dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li class="dropdown-title">My</li>
+                                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                                        <li><a class="dropdown-item" href="#">Favorites</a></li>
+                                        <li><a class="dropdown-item" href="#">Photos</a></li>
+                                        <li><a class="dropdown-item" href="#">Orders</a></li>
+                                        <li><a class="dropdown-item" href="#">Gifts</a></li>
+                                        <li><a class="dropdown-item" href="#">Viewed Media</a></li>
+                                        <li><a class="dropdown-item" href="#">Chat History</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="menu">
+                    <div class="container">
+                        <ul class="menu-list">
+                            <li class="menu-list__item">
+                                <a class="menu-list__link" href="">Users</a>
+                            </li>
+                            <li class="menu-list__item">
+                                <a class="menu-list__link" href="">Online Now</a>
+                            </li>
+                            <li class="menu-list__item">
+                                <a class="menu-list__link" href="">New Profiles</a>
+                            </li>
+                            <li class="menu-list__item menu-list__item_circle">
+                                <a class="menu-list__link" href="">News Feed</a>
+                            </li>
+                            <li class="menu-list__item">
+                                <a class="menu-list__link" href="">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11.7082 11.0814L11.9914 11.3604L12.2754 11.0823C12.57 10.7939 15.1694 8.23934 15.6951 7.38403C16.0367 6.82837 16.1891 6.2706 16.1891 5.57556C16.189 3.88469 14.9186 3 13.6637 3C12.9731 3 12.3994 3.23748 11.9955 3.68023C11.6864 3.34206 11.1669 3 10.3305 3C8.84688 3 7.81067 4.05912 7.81067 5.57556C7.81067 6.26761 7.96389 6.82529 8.30733 7.38403C8.83272 8.23893 11.4155 10.793 11.7082 11.0814Z" fill="#0658A8" />
+                                        <path d="M12.2914 12.9186L12.0083 12.6396L11.7243 12.9177C11.4296 13.2062 8.83037 15.7606 8.30457 16.616C7.963 17.1716 7.81067 17.7295 7.81067 18.4245C7.81067 20.1154 9.08105 21 10.336 21C11.0264 21 11.6001 20.7625 12.0041 20.3197C12.3131 20.658 12.8326 21 13.669 21C15.1527 21 16.1889 19.9409 16.1889 18.4245C16.1889 17.7326 16.0357 17.1749 15.6923 16.616C15.1669 15.7611 12.5842 13.207 12.2914 12.9186Z" fill="#0658A8" />
+                                        <path d="M11.0814 12.2916L11.3604 12.0085L11.0823 11.7244C10.7939 11.4298 8.23942 8.83045 7.38411 8.30473C6.82861 7.96316 6.27076 7.81083 5.57556 7.81083C3.88469 7.81091 3 9.08121 3 10.3361C3 11.0266 3.23756 11.6003 3.68039 12.0043C3.34214 12.3134 3 12.8328 3 13.6693C3 15.1529 4.05912 16.1891 5.57556 16.1891C6.26769 16.1891 6.82537 16.0359 7.38403 15.6924C8.23902 15.167 10.793 12.5844 11.0814 12.2916Z" fill="#0658A8" />
+                                        <path d="M19.6801 12.1848C20.0183 11.8757 20.3604 11.3562 20.3604 10.5198C20.3604 9.03621 19.3012 8 17.7849 8C17.0928 8 16.5351 8.15322 15.9764 8.49666C15.1215 9.02205 12.5674 11.6047 12.2789 11.8976L12 12.1807L12.278 12.4647C12.5665 12.7594 15.121 15.3587 15.9763 15.8844C16.5318 16.226 17.0897 16.3783 17.7849 16.3783C19.4758 16.3783 20.3604 15.108 20.3604 13.8531C20.3604 13.1624 20.1228 12.5887 19.6801 12.1848Z" fill="#0658A8" />
+                                    </svg>
+                                    Lucky Mingle
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mobile-menu">
+                    <div class="mobile-menu__top">
+                        <span class="mobile-menu__close">
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.15028 0.207427C0.889929 -0.0529223 0.467819 -0.0529223 0.207469 0.207427C-0.0528803 0.467777 -0.0528803 0.889887 0.207469 1.15024L4.05729 5.00006L0.207509 8.84984C-0.0528403 9.11019 -0.0528406 9.5323 0.207509 9.79265C0.467858 10.053 0.889969 10.053 1.15032 9.79265L5.0001 5.94287L8.84989 9.79265C9.11023 10.053 9.53235 10.053 9.7927 9.79265C10.053 9.5323 10.053 9.11019 9.7927 8.84984L5.94291 5.00006L9.79273 1.15024C10.0531 0.889887 10.0531 0.467777 9.79273 0.207427C9.53239 -0.0529223 9.11027 -0.0529223 8.84993 0.207427L5.0001 4.05725L1.15028 0.207427Z" fill="white" />
+                            </svg>
+                        </span>
+                        <a href="#" class="mobile-menu__logo">
+                            <img src="img/logo.png" alt="">
+                        </a>
+                    </div>
+                    <ul class="mobile-menu__list">
+                        <li class="mobile-menu__item">
+                            <a href="#">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7ZM14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5C13.1046 5 14 5.89543 14 7Z" fill="#229CEC" />
+                                    <path d="M16 15C16 14.4477 15.5523 14 15 14H9C8.44772 14 8 14.4477 8 15V21H6V15C6 13.3431 7.34315 12 9 12H15C16.6569 12 18 13.3431 18 15V21H16V15Z" fill="#229CEC" />
+                                </svg>
+                                <p class="mobile-menu__text">Users</p>
+                            </a>
+                        </li>
+                        <li class="mobile-menu__item">
+                            <a href="#">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z" fill="#229CEC" />
+                                </svg>
+                                <p class="mobile-menu__text">Inbox <span class="mobile-badge">102</span></p>
+                                <span class="mobile-menu__status">7 new</span>
+                            </a>
+                        </li>
+                        <li class="mobile-menu__item">
+                            <a href="#">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.5487 0.945683C10.7299 0.566122 11.2701 0.566122 11.4513 0.945683L14.3393 6.99806C14.4122 7.15082 14.5574 7.25633 14.7252 7.27845L21.3738 8.15486C21.7908 8.20982 21.9577 8.72366 21.6527 9.0132L16.789 13.6302C16.6663 13.7467 16.6108 13.9174 16.6416 14.0839L17.8626 20.6779C17.9392 21.0914 17.5021 21.409 17.1325 21.2084L11.2385 18.0094C11.0898 17.9287 10.9102 17.9287 10.7615 18.0094L4.86751 21.2084C4.49788 21.409 4.06079 21.0914 4.13736 20.6779L5.35838 14.0839C5.38919 13.9174 5.33373 13.7467 5.21097 13.6302L0.347274 9.0132C0.0422585 8.72366 0.209214 8.20982 0.626167 8.15486L7.27478 7.27845C7.44258 7.25633 7.5878 7.15082 7.66069 6.99806L10.5487 0.945683Z" fill="#229CEC" />
+                                </svg>
+                                <p class="mobile-menu__text">Favorites <span class="mobile-badge">7</span></p>
+                                <span class="mobile-menu__status">2 online</span>
+                            </a>
+                        </li>
+                        <li class="mobile-menu__item">
+                            <a href="#">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H18C18.5523 17 19 16.5523 19 16V8C19 7.44772 18.5523 7 18 7H14ZM17 9H15V15H17V9Z" fill="#229CEC" />
+                                    <path d="M6 7C5.44772 7 5 7.44772 5 8C5 8.55228 5.44772 9 6 9H10C10.5523 9 11 8.55228 11 8C11 7.44772 10.5523 7 10 7H6Z" fill="#229CEC" />
+                                    <path d="M6 11C5.44772 11 5 11.4477 5 12C5 12.5523 5.44772 13 6 13H10C10.5523 13 11 12.5523 11 12C11 11.4477 10.5523 11 10 11H6Z" fill="#229CEC" />
+                                    <path d="M5 16C5 15.4477 5.44772 15 6 15H10C10.5523 15 11 15.4477 11 16C11 16.5523 10.5523 17 10 17H6C5.44772 17 5 16.5523 5 16Z" fill="#229CEC" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 3C2.34315 3 1 4.34315 1 6V18C1 19.6569 2.34315 21 4 21H20C21.6569 21 23 19.6569 23 18V6C23 4.34315 21.6569 3 20 3H4ZM20 5H4C3.44772 5 3 5.44772 3 6V18C3 18.5523 3.44772 19 4 19H20C20.5523 19 21 18.5523 21 18V6C21 5.44772 20.5523 5 20 5Z" fill="#229CEC" />
+                                </svg>
+                                <p class="mobile-menu__text">News Feed</p>
+                            </a>
+                        </li>
+                        <li class="mobile-menu__item">
+                            <a href="#">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.7081 11.0814L11.9913 11.3604L12.2753 11.0823C12.5699 10.7939 15.1693 8.23934 15.695 7.38403C16.0366 6.82837 16.189 6.2706 16.189 5.57556C16.1889 3.88469 14.9185 3 13.6636 3C12.973 3 12.3993 3.23748 11.9954 3.68023C11.6863 3.34206 11.1668 3 10.3304 3C8.84676 3 7.81055 4.05912 7.81055 5.57556C7.81055 6.26761 7.96377 6.82529 8.3072 7.38403C8.83259 8.23893 11.4154 10.793 11.7081 11.0814Z" fill="#229CEC" />
+                                    <path d="M12.2913 12.9186L12.0082 12.6396L11.7241 12.9177C11.4295 13.2062 8.83025 15.7606 8.30445 16.616C7.96288 17.1716 7.81055 17.7295 7.81055 18.4245C7.81055 20.1154 9.08092 21 10.3358 21C11.0263 21 11.6 20.7625 12.004 20.3197C12.313 20.658 12.8325 21 13.6689 21C15.1526 21 16.1888 19.9409 16.1888 18.4245C16.1888 17.7326 16.0356 17.1749 15.6921 16.616C15.1667 15.7611 12.5841 13.207 12.2913 12.9186Z" fill="#229CEC" />
+                                    <path d="M20.3197 11.9957C20.658 11.6866 21 11.1672 21 10.3307C21 8.84713 19.9409 7.81091 18.4245 7.81091C17.7324 7.81091 17.1747 7.96414 16.6161 8.30757C15.7612 8.83296 13.207 11.4156 12.9186 11.7085L12.6396 11.9916L12.9177 12.2756C13.2062 12.5703 15.7607 15.1696 16.616 15.6953C17.1715 16.0369 17.7293 16.1892 18.4245 16.1892C20.1154 16.1892 21 14.9189 21 13.664C21 12.9734 20.7625 12.3996 20.3197 11.9957Z" fill="#229CEC" />
+                                    <path d="M11.0814 12.2916L11.3604 12.0084L11.0823 11.7244C10.7939 11.4298 8.23942 8.83044 7.38411 8.30473C6.82861 7.96315 6.27076 7.81082 5.57556 7.81082C3.88469 7.8109 3 9.0812 3 10.3361C3 11.0266 3.23756 11.6003 3.68039 12.0043C3.34214 12.3134 3 12.8328 3 13.6693C3 15.1529 4.05912 16.1891 5.57556 16.1891C6.26769 16.1891 6.82537 16.0358 7.38403 15.6924C8.23902 15.167 10.793 12.5843 11.0814 12.2916Z" fill="#229CEC" />
+                                </svg>
+                                <p class="mobile-menu__text">Lucky Mingle</p>
+                            </a>
+                        </li>
+                        <li class="mobile-menu__item active">
+                            <a href="#">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 13H10C10 14.1046 10.8954 15 12 15C13.1046 15 14 14.1046 14 13H16C16 15.2091 14.2091 17 12 17C9.79086 17 8 15.2091 8 13Z" fill="#229CEC" />
+                                    <path d="M14 10C14 10.5523 14.4477 11 15 11C15.5523 11 16 10.5523 16 10C16 9.44771 15.5523 9 15 9C14.4477 9 14 9.44771 14 10Z" fill="#229CEC" />
+                                    <path d="M9 11C8.44771 11 8 10.5523 8 10C8 9.44771 8.44771 9 9 9C9.55229 9 10 9.44771 10 10C10 10.5523 9.55229 11 9 11Z" fill="#229CEC" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12ZM4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z" fill="#229CEC" />
+                                </svg>
+                                <p class="mobile-menu__text">Buy Credits</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="mobile-menu__bottom">
+                        <a href="#">Blog</a>
+                        <a href="#">Help</a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="content-main">
+            <div class="container">
+                <div class="content-wrap">
+                    <aside class="sidebar">
+                        <div class="sidebar__top">
+                            <p class="sidebar__title">
+                                <svg class="sidebar-title__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.5 8.3999L2 3H14L9.5 8.3999V12.6919L6.5 14.1919V8.3999Z" fill="#0658A8" />
+                                </svg>
+                                <span class="sidebar-title__text-1">
+                                    Filter Letters
+                                </span>
+                                <span class="sidebar-title__text-2">
+                                    Filters
+                                    <span class="fw-600">1</span>
+                                </span>
+                            </p>
+                            <button class="sidebar__clear btn-off" id="clearAllDesktop">Clear</button>
+                        </div>
+                        <div class="sidebar-wrap_mobile">
+                            <div class="sidebar__head_mobile">
+                                <p class="fw-600">Filter</p>
+                                <button class="btn-off" id="clearAllFilters">Clear All</button>
+                            </div>
+                            <div class="sidebar__body">
+                                <div class="sidebar-block">
+                                    <div class="sidebar-block__head">
+                                        <p class="sidebar__heading fw-600">Age</p>
+                                        <button class="btn-off clear-filter clear-filter_age">
+                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1.15019 0.207393C0.889837 -0.0529567 0.467727 -0.0529567 0.207378 0.207393C-0.0529719 0.467742 -0.0529719 0.889852 0.207378 1.1502L4.0572 5.00003L0.207417 8.84981C-0.0529319 9.11016 -0.0529322 9.53227 0.207417 9.79262C0.467767 10.053 0.889877 10.053 1.15023 9.79262L5.00001 5.94283L8.84979 9.79262C9.11014 10.053 9.53225 10.053 9.7926 9.79262C10.053 9.53227 10.053 9.11016 9.7926 8.84981L5.94282 5.00003L9.79264 1.1502C10.053 0.889852 10.053 0.467742 9.79264 0.207393C9.53229 -0.0529567 9.11018 -0.0529567 8.84983 0.207393L5.00001 4.05722L1.15019 0.207393Z" fill="black" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="select-wrap">
+                                        <div class="select black-select select-age select-age_1">
+                                            <div class="select-title">
+                                                <span class="select-title__text">
+                                                    18
+                                                </span>
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.22877 5.17157L3.28596 6.11438L7.99999 10.8284L12.714 6.1144L11.7712 5.17159L8.00001 8.94281L4.22877 5.17157Z" fill="black" />
+                                                </svg>
+                                            </div>
+                                            <ul class="select-hidden">
+                                                <li>1</li>
+                                                <li>1</li>
+                                                <li>1</li>
+                                            </ul>
+                                        </div>
+                                        <div class="select-devider">
+                                            —
+                                        </div>
+                                        <div class="select black-select select-age select-age_2">
+                                            <div class="select-title">
+                                                <span class="select-title__text">
+                                                    44
+                                                </span>
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.22877 5.17157L3.28596 6.11438L7.99999 10.8284L12.714 6.1144L11.7712 5.17159L8.00001 8.94281L4.22877 5.17157Z" fill="black" />
+                                                </svg>
+                                            </div>
+                                            <ul class="select-hidden">
+                                                <li>1</li>
+                                                <li>1</li>
+                                                <li>1</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="sidebar-filters sidebar-filters_age">
+                                        <button><span class="filter-from">18</span>–<span class="filter-to">24</span></button>
+                                        <button><span class="filter-from">25</span>–<span class="filter-to">34</span></button>
+                                        <button><span class="filter-from">35</span>–<span class="filter-to">44</span></button>
+                                        <button><span class="filter-from">45+</span><span class="filter-to"></span></button>
+                                    </div>
+                                </div>
+                                <div class="sidebar-block">
+                                    <div class="sidebar-block__head">
+                                        <p class="sidebar__heading fw-600">Country</p>
+                                        <button class="btn-off clear-filter clear-filter_country">
+                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1.15019 0.207378C0.889837 -0.0529719 0.467727 -0.0529719 0.207378 0.207378C-0.0529719 0.467727 -0.0529719 0.889837 0.207378 1.15019L4.0572 5.00001L0.207417 8.84979C-0.0529319 9.11014 -0.0529321 9.53225 0.207417 9.7926C0.467767 10.053 0.889877 10.053 1.15023 9.7926L5.00001 5.94282L8.84979 9.7926C9.11014 10.053 9.53225 10.053 9.7926 9.7926C10.053 9.53225 10.053 9.11014 9.7926 8.84979L5.94282 5.00001L9.79264 1.15019C10.053 0.889837 10.053 0.467727 9.79264 0.207378C9.53229 -0.0529719 9.11018 -0.0529719 8.84983 0.207378L5.00001 4.0572L1.15019 0.207378Z" fill="black" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="select black-select countries-select">
+                                        <div class="select-title">
+                                            <span class="select-title__text">
+                                                All Countries
+                                            </span>
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M4.22877 5.17157L3.28596 6.11438L7.99999 10.8284L12.714 6.1144L11.7712 5.17159L8.00001 8.94281L4.22877 5.17157Z" fill="black" />
+                                            </svg>
+                                        </div>
+                                        <ul class="select-hidden">
+                                            <li>1</li>
+                                            <li>1</li>
+                                            <li>1</li>
+                                        </ul>
+                                    </div>
+                                    <div class="sidebar-filters sidebar-filters_country">
+                                        <button>Ukraine</button>
+                                        <button>Russia</button>
+                                        <button>Brazil</button>
+                                        <button>China</button>
+                                    </div>
+                                </div>
+                                <div class="sidebar-block">
+                                    <div class="sidebar-block__head">
+                                        <p class="sidebar__heading fw-600 sidebar__name">Name</p>
+                                        <button class="btn-off clear-filter clear-filter_name">
+                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1.15019 0.207378C0.889837 -0.0529719 0.467727 -0.0529719 0.207378 0.207378C-0.0529719 0.467727 -0.0529719 0.889837 0.207378 1.15019L4.0572 5.00001L0.207417 8.84979C-0.0529319 9.11014 -0.0529321 9.53225 0.207417 9.7926C0.467767 10.053 0.889877 10.053 1.15023 9.7926L5.00001 5.94282L8.84979 9.7926C9.11014 10.053 9.53225 10.053 9.7926 9.7926C10.053 9.53225 10.053 9.11014 9.7926 8.84979L5.94282 5.00001L9.79264 1.15019C10.053 0.889837 10.053 0.467727 9.79264 0.207378C9.53229 -0.0529719 9.11018 -0.0529719 8.84983 0.207378L5.00001 4.0572L1.15019 0.207378Z" fill="black" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="field" id="nameIdField" placeholder="All Users">
+                                </div>
+                                <div class="sidebar-checks">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="onlineNow">
+                                        <label for="onlineNow">
+                                            <span class="checkbox-square">
+                                                <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 4L4 7L7.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__title">Online Now</span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="onlineCamera">
+                                        <label for="onlineCamera">
+                                            <span class="checkbox-square">
+                                                <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 4L4 7L7.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__title">Online with camera</span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="newProfiles">
+                                        <label for="newProfiles">
+                                            <span class="checkbox-square">
+                                                <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 4L4 7L7.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__title">New Profiles</span>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="myFavourites">
+                                        <label for="myFavourites">
+                                            <span class="checkbox-square">
+                                                <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 4L4 7L7.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__title">My Favorites</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <button class="sidebar_btn-filter">Filter</button>
+                            </div>
+                            <div class="sidebar_mobile-buttons">
+                                <button class="cancel-changes" id="cancelChanges">Cancel</button>
+                                <button class="apply-changes" id="applyChanges">Apply</button>
+                            </div>
+                        </div>
+                    </aside>
+                    <main class="main gallery">
+                        <h1 class="title gallery__title">Video Gallery</h1>
+                        <div class="gallery-block gallery-block_1">
+                            <div class="gallery-block__head">
+                                <h3 class="heading">Popular</h3>
+                                <a href="" class="btn-more">
+                                    More
+                                    <svg width="16" height="6" viewBox="0 0 16 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.3785 2.99523L12.5453 0.171585L11.604 1.11598L12.8276 2.33546L0.621606 2.33412L0.62146 3.66746L12.8246 3.66879L11.6103 4.8872L12.5547 5.82842L15.3785 2.99523Z" fill="#0658A8" />
+                                    </svg>
+                                </a>
+                            </div>
+                            <ul class="gallery-list">
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/1.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Oksana</a>
+                                        <span class="gallery-list__years">31</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/2.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Natalia</a>
+                                        <span class="gallery-list__years">29</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/3.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Natalya</a>
+                                        <span class="gallery-list__years">32</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="swiper-container swiper-container_1">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="gallery-list__item">
+                                        <img src="img/gallery/1.jpg" alt="">
+                                        <div class="gallery-list__info">
+                                            <a href="#" class="gallery-list__name">Oksana</a>
+                                            <span class="gallery-list__years">31</span>
+                                        </div>
+                                        <div class="play">
+                                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                                <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="gallery-list__item">
+                                        <img src="img/gallery/2.jpg" alt="">
+                                        <div class="gallery-list__info">
+                                            <a href="#" class="gallery-list__name">Natalia</a>
+                                            <span class="gallery-list__years">29</span>
+                                        </div>
+                                        <div class="play">
+                                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                                <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="gallery-list__item">
+                                        <img src="img/gallery/3.jpg" alt="">
+                                        <div class="gallery-list__info">
+                                            <a href="#" class="gallery-list__name">Natalya</a>
+                                            <span class="gallery-list__years">32</span>
+                                        </div>
+                                        <div class="play">
+                                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                                <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination-main"></div>
+                        <div class="gallery-block">
+                            <div class="gallery-block__head">
+                                <h3 class="heading">New</h3>
+                                <a href="" class="btn-more">
+                                    More
+                                    <svg width="16" height="6" viewBox="0 0 16 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.3785 2.99523L12.5453 0.171585L11.604 1.11598L12.8276 2.33546L0.621606 2.33412L0.62146 3.66746L12.8246 3.66879L11.6103 4.8872L12.5547 5.82842L15.3785 2.99523Z" fill="#0658A8" />
+                                    </svg>
+                                </a>
+                            </div>
+                            <ul class="gallery-list">
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/4.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Marina</a>
+                                        <span class="gallery-list__years">20</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/5.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Marina</a>
+                                        <span class="gallery-list__years">20</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/6.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Elena</a>
+                                        <span class="gallery-list__years">34</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/7.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Yulia</a>
+                                        <span class="gallery-list__years">36</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/8.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Viktoria</a>
+                                        <span class="gallery-list__years">36</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/9.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Viktoria</a>
+                                        <span class="gallery-list__years">47</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/4.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Marina</a>
+                                        <span class="gallery-list__years">20</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/5.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Marina</a>
+                                        <span class="gallery-list__years">20</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/6.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Elena</a>
+                                        <span class="gallery-list__years">34</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/9.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Viktoria</a>
+                                        <span class="gallery-list__years">47</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/8.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Viktoria</a>
+                                        <span class="gallery-list__years">36</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/7.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Yulia</a>
+                                        <span class="gallery-list__years">36</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/6.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Elena</a>
+                                        <span class="gallery-list__years">34</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/4.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Marina</a>
+                                        <span class="gallery-list__years">20</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/5.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Marina</a>
+                                        <span class="gallery-list__years">20</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/8.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Viktoria</a>
+                                        <span class="gallery-list__years">36</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/7.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Yulia</a>
+                                        <span class="gallery-list__years">36</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li class="gallery-list__item">
+                                    <img src="img/gallery/9.jpg" alt="">
+                                    <div class="gallery-list__info">
+                                        <a href="#" class="gallery-list__name">Viktoria</a>
+                                        <span class="gallery-list__years">47</span>
+                                    </div>
+                                    <div class="play">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42ZM24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z" fill="white" />
+                                            <path d="M32 24L20 32.6603V15.3397L32 24Z" fill="white" />
+                                        </svg>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="breadcrumbs">
+                            <li class="active">1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                        </ul>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="footer__top">
+                    <div class="footer__info">
+                        <img class="footer-logo" src="img/logo_small.png" alt="">
+                        <p class="footer__text">BeHappy2Day — International Dating Service</p>
+                        <p class="footer__caption">Verotel is our autorized retailer.</p>
+                    </div>
+                    <div class="footer__menus">
+                        <div class="footer__menu">
+                            <p class="footer__title">Users</p>
+                            <ul class="footer-links">
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">All Users</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Online Now</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">New Profiles</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Caucasian</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Asian</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Latin</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer__menu">
+                            <p class="footer__title">Services</p>
+                            <ul class="footer-links">
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link fw-600">Compare</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Live Text & Video Chat</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Flowers & Gifts</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Phone Call Introduction</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Date</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer__menu">
+                            <p class="footer__title">Information</p>
+                            <ul class="footer-links information-links">
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">About Us</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">FAQ</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Testimonials</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Happy Match</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Blog</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Terms & Conditions</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Privacy Policy</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">Anti-Scam Policy</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">GDPR</a>
+                                </li>
+                                <li class="footer-links__item">
+                                    <a href="#" class="footer-links__link">EU Data Rights</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__bottom">
+                    <p class="footer__date">© 2021</p>
+                    <div class="social-links">
+                        <a href="#" class="social-links__link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.19795 21.5H13.198V13.4901H16.8021L17.198 9.50977H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H17.198V2.5H14.198C11.4365 2.5 9.19795 4.73858 9.19795 7.5V9.50977H7.19795L6.80206 13.4901H9.19795V21.5Z" fill="#084B8D" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-links__link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 3C9.10457 3 10 3.89543 10 5V8H16C17.1046 8 18 8.89543 18 10C18 11.1046 17.1046 12 16 12H10V14C10 15.6569 11.3431 17 13 17H16C17.1046 17 18 17.8954 18 19C18 20.1046 17.1046 21 16 21H13C9.13401 21 6 17.866 6 14V5C6 3.89543 6.89543 3 8 3Z" fill="#084B8D" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-links__link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7H19C19.5523 7 20 7.44771 20 8V16C20 16.5523 19.5523 17 19 17H5C4.44772 17 4 16.5523 4 16V8C4 7.44772 4.44772 7 5 7ZM2 8C2 6.34315 3.34315 5 5 5H19C20.6569 5 22 6.34315 22 8V16C22 17.6569 20.6569 19 19 19H5C3.34315 19 2 17.6569 2 16V8ZM10 9L14 12L10 15V9Z" fill="#084B8D" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-links__link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7ZM9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12Z" fill="#084B8D" />
+                                <path d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z" fill="#084B8D" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5 1C2.79086 1 1 2.79086 1 5V19C1 21.2091 2.79086 23 5 23H19C21.2091 23 23 21.2091 23 19V5C23 2.79086 21.2091 1 19 1H5ZM19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" fill="#084B8D" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="secondary-links">
+                        <a href="#">Terms & Conditions</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- jQUERY -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <!-- BTSTRP -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Swiper -->
+    <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+    <script src="js/swiper-bundle.min.js"></script>
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: {
+            el: '.swiper-pagination-main',
+            clickable: true
+        },
+    });
+    </script>
+</body>
+
+</html>
